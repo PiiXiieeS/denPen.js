@@ -1,5 +1,5 @@
-# ZenPen
+# denPen.js
 
 ![ZenPen](https://raw.github.com/semu/zenpen/master/editor.png)
 
-Customized and cleaned up fork of [ZenPen](http://zenpen.io).
+Editor based on [ZenPen](http://zenpen.io); rewritten from scratch and added underlining and image support.

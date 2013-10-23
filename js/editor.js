@@ -543,11 +543,12 @@ var ZenPen = (function() {
   ZenPen.prototype.updatePicture = function(pic, url) {
     pic.url = url;
 
+    // Full picture is uploaded and url is received
     document.getElementById('preview-' + pic.hash).src = pic.url;
     document.getElementById('preview-' + pic.hash).className = "preview";
   };
 
-  ZenPen.prototype.enableDropzone = function(Dropzone, url) {
+  ZenPen.prototype.enableDropzone = function(Dropzone, url, handleUpload) {
     var that = this;
 
     Dropzone.autoDiscover = false;
@@ -564,7 +565,7 @@ var ZenPen = (function() {
         **/
 
         this.on("success", function(file, text) {
-          that.updatePicture(file, text);
+          that.updatePicture(file, handleUpload(text));
         });
 
         this.on("addedfile", function(file) {

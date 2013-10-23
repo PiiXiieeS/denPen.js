@@ -1,5 +1,6 @@
 dist/
 js/libs/fullScreen.js
+js/libs/dropzone.js
 js/libs/head.min.js
 js/ui.js
 Gruntfile.js

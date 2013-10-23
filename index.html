@@ -97,7 +97,11 @@
           Editor.checkStorage();
 
           if (Dropzone) {
-            Editor.enableDropzone(Dropzone, 'http://localhost:3000/file/post'); }
+            Editor.enableDropzone(Dropzone, 
+              'http://localhost:3000/file/post', // Upload URL
+              function(data) { return data; } // Parse HTTP upload response and return absolute URL for file
+            ); 
+          }
           
           // Initialize site elements
           ui.init(Editor);

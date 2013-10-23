@@ -88,12 +88,16 @@
       head.js(
         "js/libs/fullScreen.js",
         "js/libs/to-markdown.js",
+        "js/libs/dropzone.js",
         "js/ui.js",
         "js/editor.js",
         function() {
           // Initialize editor
           var Editor = new ZenPen('editor', ['link', 'bold', 'italic', 'quote' /*, 'underline' */]);
           Editor.checkStorage();
+
+          if (Dropzone) {
+            Editor.enableDropzone(Dropzone, 'http://localhost:3000/file/post'); }
           
           // Initialize site elements
           ui.init(Editor);

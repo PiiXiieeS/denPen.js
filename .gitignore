@@ -2,3 +2,6 @@
 .DS_Store
 node_modules/
 dist/
+
+examples/upload-handler/nodejs/uploads/*
+!examples/upload-handler/nodejs/uploads/.gitkeep

@@ -1,6 +1,6 @@
 {
-  "name": "zenpen",
-  "version": "0.0.1",
+  "name": "zenpenta",
+  "version": "0.0.2",
   "description": "A minimal web based text editor for the modern man.",
   "author": "Tim Holman <timothy.w.holman@gmail.com>",
   "repository": {
@@ -24,8 +24,8 @@
     {"name": "potomak", "url": "https://github.com/potomak"}
   ],
   "license": "Apache",
-  "readmeFilename": "readme.md",
-  "keywords": ["zenpen", "editor", "awesome"],
+  "readmeFilename": "README.md",
+  "keywords": ["zenpen", "editor", "awesome", "markdown"],
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.2",

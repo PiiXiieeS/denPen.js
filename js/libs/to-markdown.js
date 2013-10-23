@@ -120,10 +120,9 @@ var toMarkdown = function(string) {
 
   // Converts lists that have no child lists (of same type) first, then works it's way up
   var noChildrenRegex = /<(ul|ol)\b[^>]*>(?:(?!<ul|<ol)[\s\S])*?<\/\1>/gi;
+  var replaceFunc = function(str) { return replaceLists(str); };
   while(string.match(noChildrenRegex)) {
-    string = string.replace(noChildrenRegex, function(str) {
-      return replaceLists(str);
-    });
+    string = string.replace(noChildrenRegex, replaceFunc);
   }
 
   function replaceLists(html) {
@@ -132,17 +131,18 @@ var toMarkdown = function(string) {
       var lis = innerHTML.split('</li>');
       lis.splice(lis.length - 1, 1);
 
+      var replaceFunc = function(str, innerHTML) {
+        innerHTML = innerHTML.replace(/^\s+/, '');
+        innerHTML = innerHTML.replace(/\n\n/g, '\n\n    ');
+        // indent nested lists
+        innerHTML = innerHTML.replace(/\n([ ]*)+(\*|\d+\.) /g, '\n$1    $2 ');
+        return prefix + innerHTML;
+      };
+
       for(i = 0, len = lis.length; i < len; i++) {
         if(lis[i]) {
           var prefix = (listType === 'ol') ? (i + 1) + ".  " : "*   ";
-          lis[i] = lis[i].replace(/\s*<li[^>]*>([\s\S]*)/i, function(str, innerHTML) {
-
-            innerHTML = innerHTML.replace(/^\s+/, '');
-            innerHTML = innerHTML.replace(/\n\n/g, '\n\n    ');
-            // indent nested lists
-            innerHTML = innerHTML.replace(/\n([ ]*)+(\*|\d+\.) /g, '\n$1    $2 ');
-            return prefix + innerHTML;
-          });
+          lis[i] = lis[i].replace(/\s*<li[^>]*>([\s\S]*)/i, replaceFunc);
         }
       }
       return lis.join('\n');
@@ -152,10 +152,9 @@ var toMarkdown = function(string) {
 
   // Blockquotes
   var deepest = /<blockquote\b[^>]*>((?:(?!<blockquote)[\s\S])*?)<\/blockquote>/gi;
+  var replaceFunc2 = function(str) { return replaceBlockquotes(str); };
   while(string.match(deepest)) {
-    string = string.replace(deepest, function(str) {
-      return replaceBlockquotes(str);
-    });
+    string = string.replace(deepest, replaceFunc2);
   }
 
   function replaceBlockquotes(html) {
@@ -173,6 +172,7 @@ var toMarkdown = function(string) {
     string = string.replace(/^[\t\r\n]+|[\t\r\n]+$/g, ''); // trim leading/trailing whitespace
     string = string.replace(/\n\s+\n/g, '\n\n');
     string = string.replace(/\n{3,}/g, '\n\n'); // limit consecutive linebreaks to 2
+    string = string.replace(/\&nbsp;/g, ' ');
     return string;
   }
 

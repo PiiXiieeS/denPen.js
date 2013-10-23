@@ -523,6 +523,60 @@ var ZenPen = (function() {
     this.watchForSelection();
   };
 
+  ZenPen.prototype.insertPreview = function(pic) {
+    pic.hash = Math.random().toString(36).substr(2, 15);
+
+    document.execCommand('insertHTML', false, '<img class="preview loading" id="preview-' + pic.hash + '" />');
+
+    pic.previewElement.querySelector('.preview').addEventListener('load', function() {
+      var img = document.getElementById('preview-' + pic.hash);
+      if (img.src) {
+        return;
+      } else {
+        img.src = pic.previewElement.querySelector('.preview').src;
+      }
+    });
+
+    this.bar.close();
+  };
+
+  ZenPen.prototype.updatePicture = function(pic, url) {
+    pic.url = url;
+
+    document.getElementById('preview-' + pic.hash).src = pic.url;
+    document.getElementById('preview-' + pic.hash).className = "preview";
+  };
+
+  ZenPen.prototype.enableDropzone = function(Dropzone, url) {
+    var that = this;
+
+    Dropzone.autoDiscover = false;
+    Dropzone.options.editor = {
+      previewTemplate: '<div class="dz-preview dz-file-preview" style="display: none;"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div><img class="preview" data-dz-thumbnail /></div><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-success-mark"><span>✔</span></div><div class="dz-error-mark"><span>✘</span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div>',
+      init: function() {
+        /** 
+        // Upload Multiple FileS?
+        this.on("complete", function() {
+          if (this.filesQueue && this.filesQueue.length == 0 && this.filesProcessing && this.filesProcessing.length == 0) {
+            console.log("complete", arguments);
+          }
+        }); 
+        **/
+
+        this.on("success", function(file, text) {
+          that.updatePicture(file, text);
+        });
+
+        this.on("addedfile", function(file) {
+          that.insertPreview(file);
+        });
+      }
+    };
+
+
+    this.dropzone = new Dropzone("#editor", { url: url || "/file/post"});
+  };
+
   /**
    * Add callback for change event
    *

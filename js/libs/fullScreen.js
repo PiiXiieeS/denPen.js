@@ -1,3 +1,8 @@
+/**
+ * ZenPen.io
+ * https://github.com/tholman/zenpen
+ * Apache License
+ */
 (function ( doc ) {
 	// Use JavaScript script mode
 	"use strict";

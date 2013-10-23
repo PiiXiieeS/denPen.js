@@ -463,31 +463,11 @@ article blockquote {
 	margin-bottom: 15px;
 }
 
-article .picture {
-	background-color: rgba(51, 51, 51, 0.1);
-	display: block;
-	margin: 0 -5px 15px -5px;
-	height: 100px;
-	border-radius: 3px;
-	cursor: pointer;
-}
-
-article .picture img {
-	border: 0;
-	width: 80px;
-	height: 80px;
-}
-
-article .picture .picture-box {
-	padding: 10px 10px 0 0;
-}
-
 article .preview {
 	display: block;
 	margin: 15px 0 15px 0;
 	cursor: pointer;
 	max-width: 600px;
-
 }
 
 article .preview.loading {

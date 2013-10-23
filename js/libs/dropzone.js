@@ -1,6 +1,12 @@
 ;(function(){
 
 /**
+ * Dropzone.js
+ * https://github.com/enyo/dropzone
+ * MIT License
+ */
+
+/**
  * Require the given path.
  *
  * @param {String} path

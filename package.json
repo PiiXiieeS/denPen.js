@@ -1,15 +1,15 @@
 {
-  "name": "zenpenta",
-  "version": "0.0.2",
-  "description": "A minimal web based text editor for the modern man.",
-  "author": "Tim Holman <timothy.w.holman@gmail.com>",
+  "name": "denPen.js",
+  "version": "0.0.1",
+  "description": "Editor based on ZenPen.io",
+  "author": "semu <code@semu.mp>",
   "repository": {
     "type": "git",
     "url": "git://github.com/tholman/zenpen.git"
   },
   "contributors": [ 
-    {"name": "tholman", "url": "https://github.com/tholman"},
     {"name": "semu", "url": "https://github.com/semu"},
+    {"name": "tholman", "url": "https://github.com/tholman"},
     {"name": "leon-vv", "url": "https://github.com/leon-vv"},
     {"name": "mluds", "url": "https://github.com/mluds"},
     {"name": "Prakt", "url": "https://github.com/Prakt"},
@@ -23,9 +23,9 @@
     {"name": "623HS", "url": "https://github.com/623HS"},
     {"name": "potomak", "url": "https://github.com/potomak"}
   ],
-  "license": "Apache",
+  "license": "MIT",
   "readmeFilename": "README.md",
-  "keywords": ["zenpen", "editor", "awesome", "markdown"],
+  "keywords": ["denpen.js", "denpen", "zenpen", "editor", "awesome", "markdown"],
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.2",
